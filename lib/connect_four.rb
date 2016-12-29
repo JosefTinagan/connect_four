@@ -29,6 +29,7 @@ class ConnectFour
 			board.show_grid
 			puts solicit_move
 			x,y = get_move
+			puts "#{x}, #{y}"
 			board.set_cell(x, y, current_player.color)
 			if board.game_over
 				puts game_over_message
@@ -44,18 +45,18 @@ class ConnectFour
 
 	def human_move_to_coordinates(human_move)
 		mapping = {
-			"1" => [5, 0],
-			"2" => [5, 1],
-			"3" => [5, 2],
-			"4" => [5, 3],
-			"5" => [5, 4],
+			"1" => [0, 5],
+			"2" => [1, 5],
+			"3" => [2, 5],
+			"4" => [3, 5],
+			"5" => [4, 5],
 			"6" => [5, 5],
-			"7" => [5, 6]
+			"7" => [6, 5]
 		}
 		check_coordinate = mapping[human_move]
 		x,y = check_coordinate
 		while !board.get_cell(x,y).value.empty?
-			x -= 1
+			y -= 1
 		end
 		tmp = [x,y]
 	end
