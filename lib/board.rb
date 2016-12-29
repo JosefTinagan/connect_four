@@ -44,7 +44,10 @@ class Board
 
 	def winning_rows
 		[
-			[get_cell(0,5), get_cell(1,5), get_cell(2,5), get_cell(3,5)]
+			[get_cell(0,5), get_cell(1,5), get_cell(2,5), get_cell(3,5)],
+			[get_cell(1,5), get_cell(2,5), get_cell(3,5), get_cell(4,5)],
+			[get_cell(2,5), get_cell(3,5), get_cell(4,5), get_cell(5,5)],
+			[get_cell(3,5), get_cell(4,5), get_cell(5,5), get_cell(6,5)],
 		]
 	end
 
