@@ -38,7 +38,7 @@ describe ConnectFour do
 		it "asks a player to make a move" do
 			game = ConnectFour.new([bob,frank])
 			allow(game).to receive(:current_player).and_return(bob)
-			expected = "bob: Enter a number between 0 and 6(columns) to make your move"
+			expected = "bob: Enter a number between 1 and 7(columns) to make your move"
 			expect(game.solicit_move).to eq expected
 		end
 	end
@@ -46,12 +46,24 @@ describe ConnectFour do
 	context "#get_move" do
 		it "converts human_move of 0 to [0,5]" do
 			game = ConnectFour.new([bob,frank])
-			expect(game.get_move("0")).to eq [5,0]
+			expect(game.get_move("1")).to eq [5,0]
 		end
 
 		it "converts human_move of 0 to [0,4] if [0,5] is not empty" do
 			game = ConnectFour.new([bob,frank])
-			expect(game.get_move("0")).to eq [4,0]
+			game.board.set_cell(5,0,"x")
+			expect(game.get_move("1")).to eq [4,0]
+		end
+
+		it "converts human_move of 3 to [5,2]" do
+			game = ConnectFour.new([bob,frank])
+			expect(game.get_move("3")).to eq [5,2]
+		end
+
+		it "converts human_move of 3 to [4,2] if [5,2] is not empty" do
+			game = ConnectFour.new([bob,frank])
+			game.board.set_cell(5,2,"x")
+			expect(game.get_move("3")).to eq [4,2]
 		end
 	end
 
